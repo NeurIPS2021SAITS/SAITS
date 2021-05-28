@@ -145,11 +145,11 @@ class SAITS(nn.Module):
         if self.param_sharing_strategy == 'between_group':
             for _ in range(self.n_groups):
                 for encoder_layer in self.layer_stack_for_first_block:
-                    enc_output, _ = encoder_layer(enc_output)
+                    enc_output, attn_weights = encoder_layer(enc_output)
         else:
             for encoder_layer in self.layer_stack_for_first_block:
                 for _ in range(self.n_group_inner_layers):
-                    enc_output, _ = encoder_layer(enc_output)
+                    enc_output, attn_weights = encoder_layer(enc_output)
 
         X_tilde_1 = self.reduce_dim_z(enc_output)
         X_prime = masks * X + (1 - masks) * X_tilde_1
@@ -161,11 +161,11 @@ class SAITS(nn.Module):
         if self.param_sharing_strategy == 'between_group':
             for _ in range(self.n_groups):
                 for encoder_layer in self.layer_stack_for_second_block:
-                    enc_output, attn_weights = encoder_layer(enc_output)
+                    enc_output, _ = encoder_layer(enc_output)
         else:
             for encoder_layer in self.layer_stack_for_second_block:
                 for _ in range(self.n_group_inner_layers):
-                    enc_output, attn_weights = encoder_layer(enc_output)
+                    enc_output, _ = encoder_layer(enc_output)
 
         X_tilde_2 = self.reduce_dim_gamma(F.relu(self.reduce_dim_beta(enc_output)))
 
