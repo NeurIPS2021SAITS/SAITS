@@ -6,7 +6,10 @@ The implementation of SAITS is in dir `modeling`. We give configurations of our 
 
 ## Development Environment
 All development environment dependencies are listed in file `conda_env_dependencies.yml`. You can quickly create a
-usable python environment with an anaconda command `conda env create -f conda_env_dependencies.yml`.
+usable python environment with an anaconda command `conda env create -f conda_env_dependencies.yml`. Note that this file is for Linux platform.
+
+## Dataset
+Please check out sub-directory `dataset_generating_scripts`.
 
 ## Quick Run
 For example,
