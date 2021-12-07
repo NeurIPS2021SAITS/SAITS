@@ -1,4 +1,0 @@
-{
-  "rnn_hidden_size":  {"_type":"choice","_value":[32, 64, 128, 256, 512, 1024]},
-  "learning_rate":{"_type":"loguniform","_value":[0.0001,0.01]}
-}
